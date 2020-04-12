@@ -1,11 +1,9 @@
-FROM python:3.7
+FROM golang:1.14
 
-RUN mkdir -p /usr/src/app/
-WORKDIR /usr/src/app/
+WORKDIR /go/src/app
+COPY . .
 
-COPY . /usr/src/app/
+RUN go get -d -v ./...
+RUN go install -v ./...
 
-# with bash
-CMD ["python", "app.py"]
-# without bash
-ENTRYPOINT ["python", "app.py"]
+CMD ["app"]

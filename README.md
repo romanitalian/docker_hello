@@ -27,3 +27,6 @@ Cписок запущенных контейнеров (даже которые
 Удалить все контейреры:
 > docker rm $(docker ps -qa)
 
+2.
+docker build -t my-golang-app .
+docker run -it --rm --name my-running-app my-golang-app
