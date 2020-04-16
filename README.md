@@ -68,3 +68,14 @@ Cписок запущенных контейнеров (даже которые
 
 Примонтировать каталог в контейнер:
 > docker run -it -d --rm --name foo -p 8080:80 -v /Users/rmn/wks/src/roman.dev/docker_hello:/go/src/app mm
+
+Используем volume (чтобы иметь доступ извне в наш контейнер)
+
+Показать какие volume сейчас есть:
+> docker volume ls
+
+Создать volume `moo`:
+> docker volume create moo
+
+И теперь `moo` можем использовать для монтирования:
+> docker run -it --rm --name foo -p 8080:80 -v moo:/go/src/app mm
