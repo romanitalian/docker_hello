@@ -54,3 +54,17 @@ Cписок запущенных контейнеров (даже которые
 > docker run -it    --rm --name my-running-goserv my-go-server
 
 > docker run -it -d --rm --name my-running-goserv my-go-server
+
+
+Пробросить наружу порт 8080, при том, что внутри контейнера приложение отдаёт на 80:
+> docker build -t mm .
+
+> docker run -it -d --rm --name foo -p 8080:80 mm
+
+> docker rmi mm
+
+Добавить переменную в команде запуска:
+> docker run -it -d --rm --name foo -p 8080:80 -e APP_PORT=80 mm
+
+Примонтировать каталог в контейнер:
+> docker run -it -d --rm --name foo -p 8080:80 -v /Users/rmn/wks/src/roman.dev/docker_hello:/go/src/app mm

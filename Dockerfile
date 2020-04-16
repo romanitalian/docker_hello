@@ -6,6 +6,7 @@ COPY ./app .
 RUN go get -d -v ./...
 RUN go install -v ./...
 
-EXPOSE 80
+ENV APP_PORT 80
+EXPOSE ${APP_PORT}
 
 CMD ["app"]
