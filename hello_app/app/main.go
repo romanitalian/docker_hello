@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -21,11 +22,12 @@ func main() {
 	http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		// w.Write([]byte("Current time: " + time.Now().Format(TimeFormat)))
-		content, err := ioutil.ReadFile("app/static/style.css")
+		content, err := ioutil.ReadFile("./static/style.css")
 		if err != nil {
 			log.Fatal(err)
 		}
-		w.Write(content)
+		write, err := w.Write(content)
+		fmt.Println(fmt.Sprintf("------- write: %+v\n", write))
 		log.Printf("User-Agent: %s", r.Header.Get("User-Agent"))
 	})
 	log.Printf("app port: %s\n", AppPort)

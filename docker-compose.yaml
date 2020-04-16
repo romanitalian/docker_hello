@@ -1,0 +1,20 @@
+version: "3"
+
+volumes:
+  moo:
+
+services:
+  hello_service:
+    build: hello_app
+#    restart: always
+    ports:
+    - 8080:80
+    environment:
+      - APP_PORT=80
+      - MONGO_DB_ADDR=mond
+      - MONGO_DB_PORT=27017
+#  mond:
+#    image: mongo:latest
+#    volumes:
+#    - moo:/data/db
+#    restart: always
